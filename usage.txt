@@ -1,0 +1,18 @@
+﻿model:		存放所训练的HOG+SVM识别开关状态模型
+
+obj_test:	存放待识别图像
+
+results:	存放生成定位以及识别开关图
+
+detector.svm:	训练定位开关位置所得模型
+
+svm_load.py:	载入model下识别模型
+
+test.py:	对obj_test文件夹下的待识别图进行定位分割识别处理。将定位以及
+识别后的图存放于results中，将分割下的各个开关存放于obj_test下的segment文件夹中。
+
+
+
+
+
+使用方法：	运行test.py
