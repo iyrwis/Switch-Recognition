@@ -1,0 +1,32 @@
+﻿http://dlib.net/fhog_object_detector_ex.cpp.html
+https://courses.learnopencv.com/courses/245607/lectures/3819668
+https://blog.csdn.net/qq_28713863/article/details/79009825
+https://blog.csdn.net/guyuealian/article/details/77101603
+http://blog.csdn.net/guyuealian/article/details/77482549
+
+
+
+1.采用scan_fhog_pyramid对物体位置进行定位，pyramid_down初始设为6。object_detector<image_scanner_type> detector中的image_s-
+canne-r_type需要指定相关参数。
+
+2.图像分类部分采用HOG+SVM。使用learn opencv部分代码。
+
+3.cv::Rect矩形类中的四个参数a,b,c,d,分别指代所表示矩形的左上角点的横纵坐标，
+矩形宽度，高度。而非矩形左上角与右下角点的坐标。
+
+
+4.Dlib中图像存储使用的是array2d类型，而在OpenCV中使用Mat类型。Dlib中提供#include<dlib/opencv.h>可实现array2d与Mat的互转。
+	
+	toMat对象可将Dlib的图像转为Mat类型的图像。
+	cv_image对象可将Mat转为Dlib类型的图像。
+
+5.array2d转为Mat时会出现颜色失真的现象
+
+dlib::array2d<dlib::bgr_pixel> img_bgr;//使用dlib载入彩色的RGB图像 dlib::load_image(img_bgr, "test_image.jpg"); cv::Mat img = 	dlib::toMat(img_bgr);
+
+采用该法可解决。
+
+
+6.识别加速处理： 
+	减少pyramid_dom参数，设为3可在保持一定准确率的情况下提升检测速度。
+	将Qt的Debug模式转为Release模式可极大提升程序运行速度。
